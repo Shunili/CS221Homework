@@ -86,42 +86,41 @@ public class HWA {
 						list.add(t);
 					}
 				}
-
-				if(version == 0) {
-					for(int t = 0; t < 5000; t++) {
-						list.add(t);
-					}
-				}
 			
 				long start = System.currentTimeMillis();
 
-				for(int k = 1; k < i; k++) {
+				for(int k = 1; k <= i; k++) {
 
 					switch(version) {
 						case 0: 
-						list.add(0, k); //add from front
+						list.add(0, k); //add to front
 						break;
 						case 1:
 						list.remove(0); //remove from front
 						break;
 						case 2:
-						list.add(k); // add from back
+						list.add(k); // add to back
 						break;
 						case 3:
 						list.remove(i - k); //remove from end
 						break;
 						case 4:
-						list.add((int) (Math.random() * list.size()), k); //add from middle
+						list.add((int) (Math.random() * list.size()), k); //add to middle
 						break;
 						case 5:
 						list.remove((int) (Math.random() * list.size())); //remove from middle
 						break;
 					}	
+
+					//watch for progress
+					//if (k % 1000 == 0) {
+					//	System.out.println(k); 
+					//}
 				}
 
 				long elapse = System.currentTimeMillis() - start;
 
-				double timePerOperation = elapse * 1.0 / i;
+				double timePerOperation = elapse * 1.0 / i; 
 
 				totalTime += timePerOperation;
 			}
@@ -144,7 +143,7 @@ public class HWA {
 
 		//listBenchmark(1); //test remove from front
 		//listBenchmark(5); //test remove from middle
-		//listBenchmark(3); //test remove fromback
+		//listBenchmark(3); //test remove from back
 
 		//dictBenchmark(0); //test add
 		//dictBenchmark(1); //test remove		
